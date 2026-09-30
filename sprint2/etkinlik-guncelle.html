@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etkinlik Güncelle · Kampüs Etkinlikleri</title>
+    <link rel="stylesheet" href="css/2311012023.css">
+</head>
+
+<body>
+    <header>
+        <h1>Etkinlik Güncelle</h1>
+        <nav>
+            <a href="index.html">Ana Sayfa</a>
+            <a href="etkinlikler.html">Etkinlikler</a>
+            <a href="etkinlik-ekle.html">Ekle</a>
+            <a href="etkinlik-guncelle.html" aria-current="page">Güncelle</a>
+        </nav>
+    </header>
+
+    <main>
+        <form action="#" method="post">
+            <p>
+                <label for="ad">Etkinlik adı</label>
+                <input type="text" id="ad" name="ad" value="Kariyer Günleri 2026" required>
+                <small class="hata">Bu alan boş bırakıldı.</small>
+            </p>
+
+            <p>
+                <label for="kategori">Kategori</label>
+                <select id="kategori" name="kategori" required>
+                    <option value="" disabled>Seçiniz</option>
+                    <option value="seminer" selected>Seminer</option>
+                    <option value="atolye">Atölye</option>
+                    <option value="soylesi">Söyleşi</option>
+                    <option value="konferans">Konferans</option>
+                    <option value="sosyal">Sosyal</option>
+                </select>
+                <small class="hata">Bir kategori seçiniz.</small>
+            </p>
+
+            <p>
+                <label for="tarih">Tarih</label>
+                <input type="datetime-local" id="tarih" name="tarih" value="2026-10-12T14:00" required>
+                <small class="hata">Bu alan boş bırakıldı.</small>
+            </p>
+
+            <p>
+                <label for="aciklama">Açıklama</label>
+                <textarea id="aciklama" name="aciklama" rows="4" cols="40">Mezunlarla kariyer söyleşileri ve şirket standları.</textarea>
+            </p>
+
+            <p>
+                <button type="submit">Güncelle</button>
+            </p>
+        </form>
+    </main>
+
+    <footer>
+        <p>Batuhan Demir · 2311012023 · 2026</p>
+    </footer>
+</body>
+
+</html>
