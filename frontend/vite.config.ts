@@ -5,8 +5,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react()],
   build: {
-    // CSS küçültücü --no: 2311012023 sayısını 2311010000'e yuvarlıyor ve
-    // mod(var(--no), 360) ile hesaplanan renk tonu bozuluyor. Bu yüzden kapalı.
+    // küçültücü --no sayısını yuvarlayıp rengi bozuyor
     cssMinify: false,
   },
 })

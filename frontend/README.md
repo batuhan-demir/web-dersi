@@ -2,28 +2,9 @@ https://web.bdemir.net
 
 # Kampüs Etkinlikleri
 
-Canlı adres yukarıdaki satırda (Vercel). Sprint 4'ten itibaren uygulama `frontend/` klasöründeki Vite + React + TypeScript projesidir; `sprint1/`, `sprint2/`, `sprint3/` önceki sprintlerin olduğu gibi bırakılmış hâlleridir.
+Canlı adres yukarıdaki satırda (Vercel). Uygulama `frontend/` klasöründeki Vite + React + TypeScript projesidir; `sprint1/`, `sprint2/`, `sprint3/` önceki sprintlerin olduğu gibi bırakılmış hâlleridir.
 
-## frontend/ klasöründeki dosyalar
-
-| Dosya | Görevi |
-| --- | --- |
-| `package.json` | Proje adı, komutlar (`dev`, `build`, `preview`) ve kullanılan paketlerin listesi. |
-| `package-lock.json` | Yüklenen paketlerin tam sürümlerini kilitler, herkes aynı sürümleri kurar. |
-| `node_modules/` | npm'in indirdiği paketler; `.gitignore` sayesinde GitHub'a gitmez. |
-| `tsconfig.json`, `tsconfig.app.json`, `tsconfig.node.json` | TypeScript ayarları (uygulama ve Vite yapılandırması için ayrı ayrı). |
-| `vite.config.ts` | Vite ayarları ve React eklentisi. |
-| `index.html` | Tek HTML dosyası; içinde React'in çizim yaptığı boş `div#root` var. |
-| `src/main.tsx` | React'i başlatır ve `App` bileşenini `#root` içine çizer. |
-| `src/App.tsx` | Uygulamanın ana bileşeni; 5 sayfanın hepsi burada, sayfa geçişi ve arama state ile çalışır. |
-| `src/App.css` | Uygulamanın stilleri; Sprint 3'teki `2311012023.css` dosyasının taşınmış hâli. |
-| `src/index.css` | Tüm sayfaya genel stil; bu sprintte boş. |
-| `src/types/campus-event.ts` | `Category` union tipi ve `CampusEvent` arayüzü: bir etkinlik neye benzer. |
-| `src/data/events.ts` | `CampusEvent[]` tipinde 6 etkinlik kaydı. |
-| `src/utils/filter-events.ts` | Saf fonksiyonlar: `searchEvents`, `filterByCategory`, `findEventById`. |
-| `public/` | Olduğu gibi kopyalanan dosyalar (`afis.svg`). |
-
-## Çalıştırma
+## Kurulum ve çalıştırma
 
 ```bash
 cd frontend
@@ -31,4 +12,50 @@ npm install
 npm run dev      # geliştirme sunucusu, http://localhost:5173
 npm run build    # üretim derlemesi (dist/)
 npm run preview  # derlenmiş hâli aç
+npm run lint     # oxlint
+npm run format   # prettier
 ```
+
+## Route listesi
+
+| Adres | Sayfa | Açıklama |
+| --- | --- | --- |
+| `/` | HomePage | Tarihi en yakın 2 etkinlik |
+| `/events` | EventsPage | Tüm etkinlikler, arama ve kategori filtresi |
+| `/events/:id` | EventDetailPage | Tek etkinliğin detayı; id yoksa "Sayfa bulunamadı" |
+| `/login` | LoginPage | Giriş formu (sadece doğrulama, giriş yapılmaz) |
+| `/register` | RegisterPage | Kayıt formu (sadece doğrulama) |
+| `/forgot-password` | ForgotPasswordPage | Şifre yenileme bağlantısı (demo) |
+| `/admin` | AdminPage | Etkinlik tablosu: yeni, düzenle, sil |
+| `/admin/new` | AddEventPage | Yeni etkinlik formu |
+| `/admin/:id/edit` | EditEventPage | Var olan etkinliği düzenleme formu |
+| `*` | NotFoundPage | Eşleşmeyen adresler |
+
+Ekle, güncelle ve sil işlemleri `EventsContext` üzerinden yapılır; sayfa yenilenirse veri `data/events.ts` içindeki başlangıç listesine döner (kalıcı kayıt backend sprintlerinde).
+
+## frontend/src klasörü
+
+| Yol | Görevi |
+| --- | --- |
+| `main.tsx` | React'i başlatır; `BrowserRouter` ve `EventsProvider` ile `App`'i sarar. |
+| `App.tsx` | Header, Navigation, `Routes` ve Footer. State yok. |
+| `App.css` | Uygulamanın stilleri (renk ve font öğrenci numarasından türetilir). |
+| `components/layout/` | `Header`, `Navigation` (NavLink menü), `Footer`. |
+| `components/events/` | `EventCard`, `EventList`, `EventFilter`, `EventDetail`. |
+| `components/forms/EventForm.tsx` | Controlled etkinlik formu; `initialData`, `submitText`, `onSubmit`. |
+| `context/EventsContext.tsx` | Etkinlik listesi ve `addEvent`, `updateEvent`, `deleteEvent`; `useEvents` hook'u. |
+| `pages/` | 10 route'un sayfa bileşenleri. |
+| `data/events.ts` | Başlangıç verisi, `CampusEvent[]`. |
+| `types/` | `campus-event.ts` (CampusEvent, Category), `event-form.ts` (EventFormData, EventFormErrors). |
+| `utils/` | `filter-events.ts`, `format-date.ts`, `validate-event.ts` (saf fonksiyonlar). |
+
+## Diğer dosyalar
+
+| Dosya | Görevi |
+| --- | --- |
+| `package.json`, `package-lock.json` | Komutlar ve paket sürümleri. |
+| `vite.config.ts` | Vite ayarları; CSS küçültme kapalı (numaradan türeyen renk bozulmasın diye). |
+| `vercel.json` | Tüm adresleri `index.html`'e yönlendirir; `/events/event-2` gibi adresler yenilenince de açılır. |
+| `tsconfig*.json` | TypeScript ayarları. |
+| `index.html` | Tek HTML, içinde `div#root`. |
+| `public/` | Olduğu gibi kopyalanan dosyalar (`afis.svg`). |

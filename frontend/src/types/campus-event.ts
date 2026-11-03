@@ -1,4 +1,3 @@
-// Bir etkinliğin tarifi: her kayıt bu şekle uymak zorunda.
 export type Category = "Seminer" | "Atölye" | "Söyleşi" | "Yarışma";
 
 export interface CampusEvent {

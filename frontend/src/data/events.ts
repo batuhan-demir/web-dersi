@@ -1,6 +1,5 @@
 import type { CampusEvent } from "../types/campus-event";
 
-// Tüm etkinlik verisi tek yerde; sayfalar bu diziden üretilir.
 export const events: CampusEvent[] = [
   {
     id: "event-1",

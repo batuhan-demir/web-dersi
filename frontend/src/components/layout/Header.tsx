@@ -1,16 +1,14 @@
 import type { ReactNode } from "react";
 
 interface HeaderProps {
-  title: string;
-  text?: string;
   children?: ReactNode; // menü (Navigation) başlık kutusunun içinde durur
 }
 
-function Header({ title, text, children }: HeaderProps) {
+function Header({ children }: HeaderProps) {
   return (
     <header>
-      <h1>{title}</h1>
-      {text && <p className="giris">{text}</p>}
+      <h1>Kampüs Etkinlikleri</h1>
+      <p className="giris">Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin.</p>
       {children}
     </header>
   );
