@@ -1,4 +1,4 @@
-https://web.bdemir.net
+https://batuhandemir-frontend.vercel.app
 
 # Kampüs Etkinlikleri
 
