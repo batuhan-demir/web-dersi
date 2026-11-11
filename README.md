@@ -2,7 +2,18 @@ https://batuhandemir-frontend.vercel.app
 
 # Kampüs Etkinlikleri
 
-Canlı adres yukarıdaki satırda (Vercel). Uygulama `frontend/` klasöründeki Vite + React + TypeScript projesidir; `sprint1/`, `sprint2/`, `sprint3/` önceki sprintlerin olduğu gibi bırakılmış hâlleridir.
+Canlı adres yukarıdaki satırda (Vercel). Repoda iki uygulama var: `frontend/` (Vite + React + TypeScript, Vercel'de yayında) ve `backend/` (Node + Express REST API, Sprint 7'den itibaren, şimdilik sadece yerelde). `sprint1/`, `sprint2/`, `sprint3/` önceki sprintlerin olduğu gibi bırakılmış hâlleridir.
+
+## Backend
+
+```bash
+cd backend
+cp .env.example .env
+npm install
+npm run dev      # http://localhost:3000
+```
+
+Uçlar: `GET /health`, `GET /events`, `GET /events/:id`, `POST /events`. REST sözleşmesi ve ayrıntılar [backend/README.md](backend/README.md) içinde; Postman collection `backend/requests/kampus-api.json`.
 
 ## Kurulum ve çalıştırma
 
