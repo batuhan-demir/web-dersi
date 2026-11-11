@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import eventRoutes from "./routes/event-routes.js";
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.get("/health", (req, res) => {
     student: "2311012023",
   });
 });
+
+app.use("/events", eventRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ error: { message: "Route not found" } });
